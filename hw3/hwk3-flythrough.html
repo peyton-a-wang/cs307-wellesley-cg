@@ -1,0 +1,48 @@
+<!-- This program simulates landing near a farm scene from the
+	perspective of a plane. Upon pushing 'n', the next frame
+	is triggered, in which the position of the plane is changed
+	by a constant amount in the Y and Z directions. Also, we
+	added the option to zoom out from the scene by pushing 'd'
+	to decrement the frame.
+
+	CS 307
+	HW 3 Problem 1: Coming in for a Landing
+	Written by Peyton Wang and Katherine Guo
+	Due: March 12, 2021
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Flythrough</title>
+	<style>
+		canvas {
+			display: block;
+			margin: 10px auto;
+			width: 800px;
+			height: 500px;
+		}
+	</style>
+
+</head>
+
+<body>
+	<h1>HW 3: Landing Plane Three.js Application</h1>
+	<h2 id="frameNum">Frame 0</h2>
+	<p>Press n to land closer and d to fly away! The scene resets at the 10th frame.</p>
+
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/three-r95.all.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/three-r80.min.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls-r95.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw-sp21.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/tw-fa18.js"
+	</script>
+	<script src="./hw3-flythrough.js"></script>
+</body>
+
+</html>

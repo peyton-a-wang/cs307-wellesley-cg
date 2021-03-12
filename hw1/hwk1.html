@@ -1,0 +1,61 @@
+<!-- This program builds an obelisk out of "raw geometry" using the Three.js library.
+	The application consists of the obelisk mesh with differently colored one-sided 
+	materials and a GUI with sliders for changing the dimensions of the obelisk. In 
+	addition, there are keyboard controls for widening/narrowing the base width and 
+	assigning random colors to the obelisk.
+	
+	CS 307 
+	HW 1: Obelisk
+	Written by Peyton Wang and Isa Lie
+	Due: February 26, 2021 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Obelisk</title>
+	<style>
+		canvas {
+			display: block;
+			margin: 30px;
+			width: 70%;
+			height: 400px;
+		}
+		
+		h1 {
+			font-family: "Palatino";
+			margin: 30px;
+			color: darkslategrey;
+		}
+		p{
+			font-family: "Palatino";
+			margin: 30px;
+		}
+		body {
+			background-color: gainsboro;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>HW 1: Obelisk Three.js Application</h1>
+	<p>Press +/- to increase width of the obelisk's base, and r to randomly change the colors!</p>
+
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/three-r95.all.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/three-r80.min.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls-r95.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls-r80.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui-r95.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui-r80.min.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw-sp21.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/tw-fa18.js"
+	</script>
+	<script src="./hw1.js"></script>
+</body>
+
+</html>
