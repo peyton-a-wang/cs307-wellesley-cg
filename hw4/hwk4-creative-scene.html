@@ -1,0 +1,84 @@
+<!-- This program consists of a static scene that conveys what would
+	like to flesh out for our final project. Our plans are included 
+	in the text on the webpage.
+
+	CS 307
+	HW 4 Problem 2
+	Written by Peyton Wang and Isa Lie
+	Due: March 21, 2021
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Creative Scene</title>
+	<style>
+		canvas {
+			display: block;
+			margin: 30px;
+			width: 70%;
+			height: 400px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>HW 4 Problem 2: Creative Scene Three.js Application</h1>
+
+	<h3>Components:</h4>
+		<ul>
+			<li>animated carousel scene</li>
+			<li>handle to spin and spins slowly backward when interaction ends</li>
+			<li>lights inside and on top carousel tent</li>
+			<li>general lights</li>
+			<li>floor, floor, and dome with sky background</li>
+			<li>possibly adding music</li>
+		</ul>
+
+	<h3>Graphics Concepts:</h3>
+		<ol>
+			<li>modeling: carousel object and components (e.g. horse, tent, poles)</li>
+			<li>material, lighting, shading: phong material for everything, spotlight on each horse, 
+				ambient light, directional light, point light for light bulbs</li>
+			<li>textures and texture mapping: floor, wooden floor, sky background</li>
+			<li>curved lines/surfaces: horse mane/saddle, sky background dome, carousel crown</li>
+			<li>transparency: light bulbs</li>
+			<li>user interaction: spinning handle</li>
+			<li>animation: spinning carousel, horse moving up and down the pole</li>
+		</ol>	
+
+	<h3>To-Dos:</h3>
+		<ul>
+			<li>add a crown to the tent top</li>
+			<li>change colors for horse (make an array)</li>
+			<li>add tent decorations (e.g. colors, light bulbs)</li>
+			<li>add texture for wooden floor and sky background</li>
+			<li>add user interaction and animation</li>
+		</ul>
+
+	<h3>Sketch:</h3>
+	<img src="images/sketch.jpg" width=500>
+
+	<h3>First Draft of Static Scene:</h3>
+
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/three-r95.all.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/three-r80.min.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls-r95.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls-r80.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui-r95.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui-r80.min.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw-sp21.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/tw-fa18.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/lectures-s21/TubeGeometryNew.js"></script>
+	<script src="https://cs.wellesley.edu/~cs307/lectures-s21/TubeRadialGeometry.js"></script>
+	<script src="./hw4-creative-scene.js"></script>
+
+</body>
+
+</html>
