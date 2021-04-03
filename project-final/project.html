@@ -1,0 +1,197 @@
+<!-- This program consists of the description for our final project.
+
+    CS 307
+	Final Project Description
+	Written by Peyton Wang and Isa Lie
+	Due: April 2, 2021
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>Description</title>
+	<style>
+		canvas {
+			display: block;
+			margin-top: 30px;
+			width: 70%;
+			height: 400px;
+		}
+		body {
+			font-family: "Palatino";
+			margin: 30px;
+		}
+		h1 {
+			margin-top: 40px;
+			color: darkslategrey;
+		}
+		h4 {
+			color: darkslateblue;
+		}
+		
+	</style>
+</head>
+
+<body>
+	<h1>Final Project Description</h1>
+
+	<h3>Goal:</h3>
+	<p>The goal of our project was to utilize computer graphics concepts to create a scene with a 
+		music box and texture mapped backgrounds. Our program features a carousel music box created from
+		complex geometries, along with user interaction and animation (e.g. spinning). Some other 
+		components include a wooden floor and sky dome background, ambient and directional lights, and point 
+		lights and spotlights inside the carousel.
+	</p>
+
+	<img src="images/screenshot1.png" height=300 width=300>
+	<img src="images/screenshot2.png" height=300 width=300>
+	<img src="images/screenshot3.png" height=300 width=300>
+
+	<h3>Graphics Concepts:</h3>	
+		<ol>
+			<h4><li>Modeling:</li></h4>
+			<p>We used a variety of curves, surfaces, and geometries to model our scene. In addition, we implemented a 
+				hierarchical structure with creating meshes, adding them to objects, and building on top of these objects.
+				To further challenge ourselves, we used some Three.js geometries that required us to create our own paths or Bezier
+				curves, which are described in further detail under the Curved Lines or Surfaces section.</p>
+			
+			<h4><li>Material, Lighting, and Shading:</li></h4>	
+			<p>We used Phong material for all of our components, and added shininess and specular properties to the handle 
+				and music box base to create a metallic appearance. For lighting, we used generic ambient and directional 
+				lights positioned at the top of the scene, a spotlight for each horse, and point lights for the light 
+				decorations on the tent. 
+			</p>
+
+			<p>Code snippet of math calculations and adding a point light to the planet decoration:</p>
+			<code>
+				var x = decParams.decHeight/2 * Math.cos(Math.PI/3);<br>
+				var y = decParams.decHeight/2 * Math.sin(Math.PI/6);<br>
+				planetLight = new THREE.PointLight("white", 0.2, 0, 2);<br>
+				planetLight.position.set(carouselParams.tentRadius/2 + x, carouselParams.platformHeight + carouselParams.centerHeight<br>
+				&emsp; + decParams.decHeight/2, carouselParams.tentRadius/2 - y);
+			</code>
+
+			<h4><li>Camera:</li></h4>	
+			<p>We used a perspective camera and established the vertical field of view, aspect ratio, near, and far plane parameters.
+				Additionally, we used the lookAt function to initially face the camera at a certain point in the scene. Setting up a 
+				camera was essential, as the raycaster in our user interaction component depended on both the camera and mouse position.
+			</p>
+
+			<h4><li>Textures and Texture Mapping:</li></h4>	
+			<p>We used loaded images to texture map for the wooden floor and the sky background. The wooden floor uses repeated wrapping, 
+				and the sky background uses mirror repeated wrapping to create a smooth transition between the repeated sky images.
+			</p>
+			<p>Code snippet of texture mapping for the sky background:</p>
+			<code>
+				skyMaterial = new THREE.MeshPhongMaterial({<br>
+					&emsp; color: "lightblue",<br>
+					&emsp; map: textures[1],<br>
+					&emsp; side: THREE.DoubleSide<br>
+				});<br>
+
+				textures[1].wrapS = THREE.MirroredRepeatWrapping;<br>
+				textures[1].repeat.set(2, 1);<br>
+				textures[1].needsUpdate = true;
+			</code>
+
+			<h4><li>Curved Lines or Surfaces:</li></h4>
+			<p> We used several complicated geometries to create our more detailed components, such as TubeRadialGeometry for the horses' manes, 
+				ExtrudeGeometry for the moon light, and TubeGeometry for the handle. These geometries required us to create our own Bezier curves
+				using vectors or specify settings to control depth and bevel thickness.
+			</p>
+			<p>Code snippet of using Bezier curves and TubeGeometry to create a handle geometry:</p>
+			<code>
+				var path = new THREE.CubicBezierCurve3(<br>
+					&emsp; new THREE.Vector3(40, -20, 0),<br>
+					&emsp; new THREE.Vector3(10, -20, 0),<br>
+					&emsp; new THREE.Vector3(35, 0, 0),<br>
+					&emsp; new THREE.Vector3(0, 0, 0)<br>
+					);
+				<br>
+				var handleGeom = new THREE.TubeGeometry( path, 20, 2, 8, false );
+			</code>	
+			
+			<h4><li>Transparency:</li></h4>
+			<p>The light bulb at the top of the tent and light decorations make use of the opacity property to create a more 
+				realistic glass appearance.
+			</p>		
+			
+			<h4><li>User Interaction:</li></h4>	
+			<p>We implemented user interaction in multiple areas. For example, by clicking the light switch, the switch moves and
+				the user can turn on and off the carousel light decorations. This was accomplished by declaring the lights 
+				controlled by the light switch as global variables, then using multiple helper functions to control 
+				their presence and visibility in the scene. Users can also interact with the music box upon clicking the
+				spinning handle to trigger the animation, which is explained in more detail under the Animation section.
+			</p>
+			<p>Code snippet of light switch user interaction:</p>
+			<code>
+				raycaster.setFromCamera(mouse, camera);<br>
+				var intersects = raycaster.intersectObjects(scene.children, true);<br>
+
+				if (intersects.length > 0) {<br>
+					&emsp; if (intersects[0].object.name == "switch") {<br>
+						&emsp; &emsp; changeLight();<br>
+						&emsp; &emsp; renderer.render(scene, camera);<br>
+					&emsp; };<br>
+				}
+			</code>	
+			
+			<h4><li>Animation:</li></h4>
+			<p>To model a real music box, users can press 'w' to "wind up" the mechanism, allowing the carousel to freely spin
+				upon releasing the handle. This involved 3 variables, windStepCycle, currentStep, and total. While 
+				incrementing the currentStep and total variables by one with the advancement of each frame, each time the user winds up 
+				the handle, the handle and carousel slowly rotate counter-clockwise until reaching a certain number of frames (established as 
+				our windStepCycle constant). Then, pushing 'r' emulates releasing the handle, causing the handle and carousel spin faster and 
+				clockwise until the total variable is reset to 0.</p>	
+			<p>Code snippet of key wind-up animation:</p>
+			<code>
+				oneStep();<br>
+				if (spinParams.step > spinParams.wind) {<br>
+					&emsp; console.log(spinParams.wind);<br>
+					&emsp; stopAnimation();<br>
+				} else {<br>
+					&emsp; animationID = requestAnimationFrame(animate);<br>
+				}
+			</code>	
+		</ol>
+
+	<h3>Challenges:</h3>
+		<p>Some challenges we faced were creating Bezier curves for complex components, such as the handle,
+			horses, and the light decorations. To overcome these difficulties, we intially added control points 
+			to the scene to identify the points associated with the vectors we created. We also had trouble with 
+			using the Python-based web server to load our images, but were able to resolve the issue through
+			installing the appropriate dependencies. Lastly, for user interaction, we initially struggled with 
+			reversing the animation of the handle and spent much time deciding on the variables to keep track of 
+			the frame rate.
+		</p>
+
+	<h3>Extending Beyond CS 307:</h3>
+		<p>To extend our knowledge beyond what we learned in the class, we created complex Bezier curves and surfaces,
+			especially for the horses, to achieve the shapes we desired. Additionally, we implemented all eight major 
+			graphics concepts in our project, from user interaction to animation.
+		</p>
+
+	<h3><a href="../hw4/hwk4-creative-scene.html">First Draft</a></h3>
+    <h3><a href="../project-alpha/demo.html">Alpha Version</a></h3>
+	<h3><a href="./final-scene.html">Final Version</a></h3>
+
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/three-r95.all.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/three-r80.min.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls-r95.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/OrbitControls-r80.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui-r95.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/dat.gui-r80.min.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/threejs/libs/tw-sp21.js">
+		"https://cs.wellesley.edu/~cs307/threejs/libs/tw-fa18.js"
+	</script>
+	<script src="https://cs.wellesley.edu/~cs307/lectures-s21/TubeGeometryNew.js"></script>
+	<script src="https://cs.wellesley.edu/~cs307/lectures-s21/TubeRadialGeometry.js"></script>
+
+</body>
+
+</html>
