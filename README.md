@@ -1,5 +1,8 @@
-# CS 307: Computer Graphics Assignments
+# cs307-wellesley-cg
 
-This repository contains all the assignments from Wellesley's 7-week Computer Graphics course (CS 307) in Term 3 of Spring 2021. The assignments consist of web-based computer graphics displays using software that integrates JavaScript, WebGL, and Three.js (3D library).
+This repository contains all the assignments from Wellesley's 7-week Computer Graphics course (CS 307) in Term 3 of Spring 2021.
 
-## [Website with assignments](https://peyton-a-wang.github.io/cs307-wellesley-cg/)
+### [Assignments][assignments] • [Final Project Description][project]
+
+[assignments]: https://peyton-a-wang.github.io/cs307-wellesley-cg/
+[project]:     https://peyton-a-wang.github.io/projects/cs307-final-project/
